@@ -561,11 +561,13 @@ impl Literal {
         u16_suffixed => u16,
         u32_suffixed => u32,
         u64_suffixed => u64,
+        u128_suffixed => u128,
         usize_suffixed => usize,
         i8_suffixed => i8,
         i16_suffixed => i16,
         i32_suffixed => i32,
         i64_suffixed => i64,
+        i128_suffixed => i128,
         isize_suffixed => isize,
 
         f32_suffixed => f32,
@@ -577,11 +579,13 @@ impl Literal {
         u16_unsuffixed => u16,
         u32_unsuffixed => u32,
         u64_unsuffixed => u64,
+        u128_unsuffixed => u128,
         usize_unsuffixed => usize,
         i8_unsuffixed => i8,
         i16_unsuffixed => i16,
         i32_unsuffixed => i32,
         i64_unsuffixed => i64,
+        i128_unsuffixed => i128,
         isize_unsuffixed => isize,
     }
 
@@ -1186,9 +1190,9 @@ fn digits(mut input: Cursor) -> PResult<()> {
     let mut empty = true;
     for b in input.bytes() {
         let digit = match b {
-            b'0'...b'9' => (b - b'0') as u64,
-            b'a'...b'f' => 10 + (b - b'a') as u64,
-            b'A'...b'F' => 10 + (b - b'A') as u64,
+            b'0'...b'9' => (b - b'0') as u128,
+            b'a'...b'f' => 10 + (b - b'a') as u128,
+            b'A'...b'F' => 10 + (b - b'A') as u128,
             b'_' => {
                 if empty && base == 10 {
                     return Err(LexError);
